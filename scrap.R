@@ -1,12 +1,17 @@
 #Scrap ANEEL
+
+#Definição de diretório base
 setwd('E:/Dropbox/Bruno/Academico/UFMG - Estatística/9- Monografia/Estatística Aplicada a Auditoria/Dados')
+
+#Instalação de pacotes
+
 #install.packages("RSelenium")
 #install.packages("KeyboardSimulator")
 library("KeyboardSimulator")
 library("RSelenium")
 library(XML)
 
-#Código
+#Código. Execute daqui pra baixo
 { 
   rD <- rsDriver(verbose = FALSE,port=4000L,chromever = "86.0.4240.22") #Abre a porta com o Chrome. Verifique qual sua versão do chrome
   remDr <- rD$client
