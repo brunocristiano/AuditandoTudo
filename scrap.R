@@ -1,19 +1,19 @@
 #Scrap ANEEL
-setwd('E:/Dropbox/Bruno/Academico/UFMG - Estatística/9- Monografia/Estatística Aplicada a Auditoria/Dados')
+setwd('E:/Dropbox/Bruno/Academico/UFMG - EstatÃ­stica/9- Monografia/EstatÃ­stica Aplicada a Auditoria/Dados')
 #install.packages("RSelenium")
 #install.packages("KeyboardSimulator")
 library("KeyboardSimulator")
 library("RSelenium")
 library(XML)
 
-#Código
+#CÃ³digo
 { 
-  rD <- rsDriver(verbose = FALSE,port=4000L,chromever = "86.0.4240.22") #Abre a porta com o Chrome. Foi o primeiro funcionou sem os de cima
+  rD <- rsDriver(verbose = FALSE,port=4000L,chromever = "86.0.4240.22") #Abre a porta com o Chrome. Verifique qual sua versÃ£o do chrome
   remDr <- rD$client
   Sys.sleep(2)
   
   remDr$navigate("http://relatorios.aneel.gov.br/_layouts/xlviewer.aspx?id=/RelatoriosSAS/RelSAMPClasseConsNivel.xlsx&Source=http%3A%2F%2Frelatorios%2Eaneel%2Egov%2Ebr%2FRelatoriosSAS%2FForms%2FAllItems%2Easpx&DefaultItemOpen=1") 
-  print("Aguarda carregar a página")
+  print("Aguarda carregar a pÃ¡gina")
   remDr$maxWindowSize()
   
   remDr$setTimeout(type = "page load", milliseconds = 10000) 
@@ -53,7 +53,7 @@ library(XML)
   
   for (i in 2:13) {
     
-    #Abre o mês
+    #Abre o mÃªs
     print("Abre mes")
     webElem <- remDr$findElement(using = 'xpath', value = "//*[@id='afi.1.1']")
     #webElem$highlightElement()                               
@@ -70,9 +70,9 @@ library(XML)
       Sys.sleep(1)
     }
     
-    #Escolhe mês i
+    #Escolhe mÃªs i
     Sys.sleep(2)
-    print(paste0("fazendo mês ",i-1))
+    print(paste0("fazendo mÃªs ",i-1))
     
     if (i >= 3) {
       #Se nao for no inicio, tem que desmarcar o anterior
@@ -237,13 +237,3 @@ library(XML)
 }
 
 ############################Fim
-
-a <- read.csv2("tabels.csv")
-
-remDr$close()
-rD$server$stop()
-system("taskkill /im java.exe /f", intern=FALSE, ignore.stdout=FALSE)
-
-
-#KeyboardSimulator::mouse.move(10,10)
-#mouse.get_cursor()
